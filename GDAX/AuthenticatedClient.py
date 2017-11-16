@@ -85,7 +85,7 @@ class AuthenticatedClient(PublicClient):
         return list
 
     def paginateOrders(self, list, after):
-        r = requests.get(self.url + '/orders?after=%s' %str(after))
+        r = requests.get(self.url + '/orders?after=%s' %str(after), auth=self.auth)
         if r.json():
             list.append(r.json())
         if 'cb-after' in r.headers:
